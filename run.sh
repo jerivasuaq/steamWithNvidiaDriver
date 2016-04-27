@@ -2,6 +2,8 @@
 
 COMMAND=/bin/bash
 
+mkdir -p $HOME/steam
+
 xhost + # allow connections to X server
 docker run \
 	-ti --rm \
@@ -14,5 +16,6 @@ docker run \
 	-e DISPLAY=unix$DISPLAY \
 	-v="/tmp/.X11-unix:/tmp/.X11-unix:rw"  \
 	--device /dev/snd \
+	-v="$HOME/steam:/home/steam"  \
 	steam_with_nvidia_driver $COMMAND
 
